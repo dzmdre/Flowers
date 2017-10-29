@@ -17,4 +17,18 @@ public enum ColorType {
     public String toString() {
         return color;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public static ColorType getColor(String value) {
+        for(ColorType v : values()) {
+            if (v.getColor().equalsIgnoreCase(value)) {
+                return v;
+            }
+        }
+       return null;
+    }
+
 }

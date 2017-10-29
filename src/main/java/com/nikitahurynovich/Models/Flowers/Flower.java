@@ -1,20 +1,32 @@
-package com.nikitahurynovich.Models;
+package com.nikitahurynovich.Models.Flowers;
 
 import com.nikitahurynovich.Types.ColorType;
 
-import java.awt.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.Random;
 
 /**
  * Created by computer on 19.10.2017.
  */
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Flower {
+
+    @XmlElement
     protected int steelLength;
+    @XmlElement
     protected int freshness;
+    @XmlElement
     protected int weight;
+    @XmlElement
     protected ColorType color;
+    @XmlElement
     protected int smellLevel;
+    @XmlElement
     protected String name;
+    @XmlElement
     protected int price;
     protected static Random randomGenerator = new Random();
 
@@ -23,7 +35,6 @@ public abstract class Flower {
         steelLength = randomGenerator.nextInt(10) + 5;
         weight = randomGenerator.nextInt(10) + 1;
         smellLevel = randomGenerator.nextInt(10) + 1;
-        price = calculatePrice();
     }
 
 
@@ -89,6 +100,42 @@ public abstract class Flower {
     @Override
     public String toString() {
         return "[" + name + ", color=" + color.toString() + ", price=" + price + ", weight=" + weight +"]";
+
+    }
+
+
+    public abstract class Builder {
+
+        public Builder weigth(int weight) {
+            Flower.this.weight = weight;
+            return this;
+        }
+        public Builder steelLength(int steelLength) {
+            Flower.this.steelLength = steelLength;
+            return this;
+        }
+
+        public Builder freshness(int freshness) {
+            Flower.this.freshness = freshness;
+            return this;
+        }
+
+        public Builder color(ColorType color) {
+            Flower.this.color = color;
+            return this;
+        }
+
+        public Builder smellLevel(int smellLevel) {
+            Flower.this.smellLevel = smellLevel;
+            return this;
+        }
+
+        public Builder name(String name) {
+            Flower.this.name = name;
+            return this;
+        }
+
+        public abstract Flower build();
 
     }
 }
